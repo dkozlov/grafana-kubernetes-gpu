@@ -48,7 +48,7 @@
       }
     ]
   },
-  "description": "Monitors Kubernetes deployments in cluster using Prometheus. Shows overall cluster CPU / Memory of deployments, replicas in each deployment. Uses Kube state metrics and cAdvisor metrics. \n\n#Updated to work w/ our metrics",
+  "description": "Monitors Kubernetes deployments in cluster using Prometheus. Shows overall cluster CPU / Memory of deployments, replicas in each deployment. Uses Kube state metrics and cAdvisor metrics. https://github.com/dkozlov/grafana-kubernetes-gpu",
   "editable": true,
   "gnetId": 8769,
   "graphTooltip": 0,
@@ -121,7 +121,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum (container_memory_working_set_bytes{namespace=~\"$Namespace\", pod_name=~\"^$Deployment.*$\",node=~\"$Node\"}) / sum (machine_memory_bytes{kubernetes_io_hostname=~\"^$Node$\"}) * 100",
+          "expr": "sum (container_memory_working_set_bytes{namespace=~\"$Namespace\", pod_name=~\"^$Deployment.*$\"}) / sum (machine_memory_bytes{kubernetes_io_hostname=~\"^$Node$\"}) * 100",
           "interval": "10s",
           "intervalFactor": 1,
           "refId": "A",
@@ -208,7 +208,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum (rate (container_cpu_usage_seconds_total{namespace=~\"$Namespace\",pod_name=~\"^$Deployment.*$\",node=~\"$Node\"}[1m])) / sum (machine_cpu_cores{kubernetes_io_hostname=~\"^$Node$\"}) * 100",
+          "expr": "sum (rate (container_cpu_usage_seconds_total{namespace=~\"$Namespace\",pod_name=~\"^$Deployment.*$\"}[1m])) / sum (machine_cpu_cores{kubernetes_io_hostname=~\"^$Node$\"}) * 100",
           "interval": "10s",
           "intervalFactor": 1,
           "refId": "A",
